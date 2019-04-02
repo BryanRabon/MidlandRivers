@@ -4,22 +4,6 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.6.3/papaparse.min.js"></script>
             <script src="https://gmousse.github.io/dataframe-js/dist/dataframe.min.js"></script>
             <script>
-                  DataFrame.prototype.showHtml = function(targetPath,caption){
-                        var columns = this.listColumns();
-                        var table = `<table class="dataTable">
-                        <caption>${caption}</caption>
-                        <thead>
-                        <tr>${columns.map((column)=>`<th>${column}</th>`).join('')}</tr>
-                        </thead>
-                        <tbody>
-                        ${this.toArray().map((row)=>`<tr>${columns.map((column,index)=>`<td>${row[index]}</td>`).join("")}</tr>`).join("")} 
-                        </tbody>
-                  </table>`;
-document.querySelector(targetPath).innerHTML = table; 
-  return this; 
-};
-            </script>
-            <script>
                   const DataFrame = dfjs.DataFrame;
                   DataFrame.fromCSV(
                         "https://www.waterqualitydata.us/data/Result/search?organization=MRC&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult"
@@ -30,16 +14,17 @@ document.querySelector(targetPath).innerHTML = table;
                         const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','ActivityStartTime/Time','CharacteristicName','ResultMeasureValue','ResultMeasure/MeasureUnitCode');
                         shortDF.show(3);
                   });
-                  //console.log(DataFrame);
+                  //console.log(short);
                   
             </script>
       </head>
       <body>
             <H1> Midlands River </H1>
-            </br>
+            <br></br>
             This table is displaying data from a demo CSV file which can be found <a href="https://www.waterqualitydata.us/data/Result/search?organization=MRC&amp;characteristicName=Escherichia%20coli&amp;mimeType=csv&amp;zip=no&amp;dataProfile=narrowResult" target="_blank">here</a>.
-            </br>
-            <script> shortDF.showHtml() </script>
-            </br>
+            <br></br>
+            <script>
+                  console.log(shortDF.toArray());
+            </script>
       </body>
 </html>
