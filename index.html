@@ -4,6 +4,7 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.6.3/papaparse.min.js"></script>
             <script src="https://gmousse.github.io/dataframe-js/dist/dataframe.min.js"></script>
             <script>
+                  vars passaround = {}
                   const DataFrame = dfjs.DataFrame;
                   DataFrame.fromCSV(
                         "https://www.waterqualitydata.us/data/Result/search?organization=MRC&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult"
@@ -13,7 +14,7 @@
                         //df.show(3);
                         const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','ActivityStartTime/Time','CharacteristicName','ResultMeasureValue','ResultMeasure/MeasureUnitCode');
                         shortDF.show(3);
-                        window.dfshort = shortDF.toArray();
+                        passaround.dfshort = shortDF.toArray();
                   });
                   //console.log(short);
                   
@@ -25,8 +26,8 @@
             This table is displaying data from a demo CSV file which can be found <a href="https://www.waterqualitydata.us/data/Result/search?organization=MRC&amp;characteristicName=Escherichia%20coli&amp;mimeType=csv&amp;zip=no&amp;dataProfile=narrowResult" target="_blank">here</a>.
             <br></br>
             <script>
-                  function(window.dfshort){
-                  console.log(window.dfshort);
+                  function(passaround.dfshort){
+                  console.log(passaround.dfshort);
                   }
             </script>
       </body>
