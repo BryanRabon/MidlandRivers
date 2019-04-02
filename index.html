@@ -13,7 +13,7 @@
                         //df.show(3);
                         const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','ActivityStartTime/Time','CharacteristicName','ResultMeasureValue','ResultMeasure/MeasureUnitCode');
                         shortDF.show(3);
-                        //window.dfshort = shortDF.toArray();
+                        window.dfshort = shortDF.toArray();
                   });
                   //console.log(short);
                   
@@ -25,7 +25,7 @@
             This table is displaying data from a demo CSV file which can be found <a href="https://www.waterqualitydata.us/data/Result/search?organization=MRC&amp;characteristicName=Escherichia%20coli&amp;mimeType=csv&amp;zip=no&amp;dataProfile=narrowResult" target="_blank">here</a>.
             <br></br>
             <script>
-                  //console.log(window.dfshort);
+                  console.log(window.dfshort);
             </script>
       </body>
 </html>
