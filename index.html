@@ -7,7 +7,7 @@
                   var DataFrame = dfjs.DataFrame;
                   //console.log(DataFrame);
                   const df = new DataFrame.fromCSV('https://www.waterqualitydata.us/data/Result/search?organization=MRC&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult');
-                  console.log("Parsing complete.", df.show);
+                  console.log(df.show(3));
             </script>
       </head>
       <body>
