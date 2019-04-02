@@ -10,11 +10,12 @@
                   )
                         .then(df => {
                         console.log(df.listColumns());
-                        df.show();
+                        df.show(3);
+                        const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','ActivityStartTime/Time','CharacteristicName','ResultMeasureValue','ResultMeasure/MeasureUnitCode');
+                        shortDF.show(3);
                   });
                   //console.log(DataFrame);
-                  const df = new DataFrame.fromCSV('https://www.waterqualitydata.us/data/Result/search?organization=MRC&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult');
-                  console.log(df.count());
+                  
             </script>
       </head>
       <body>
