@@ -1,120 +1,39 @@
 <html>
-
-
-
 <head>
 
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.6.3/papaparse.min.js"></script
 
 <script>
-      function () {Papa.parse("https://www.waterqualitydata.us/data/Result/search?organization=21SC60WQ_WQX&siteid=21SC60WQ_WQX-S-298&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult", {
-
-
-
-    download: true,
-
-
-
-    //header: true,
-
-
-
-    complete: function (results) {
-
-
-
-      console.log("Parsing complete.", results.data);
-
-
-
-      $.each(results.data, function (i, el) {
-
-
-
-        var row = $("<tr/>");
-
-
-
-        row.append($("<td/>").text(i));
-
-
-
-        $.each(el, function (i, cell) {
-
-
-
-          row.append($("<td/>").text(cell));
-
-
-
-        });
-
-
-
-        $("#results tbody").append(row);
-
-
-
-      };
-
-
-
-    } });
-
-
-
-
-
-
-
-});
+      function () {
+            Papa.parse("https://www.waterqualitydata.us/data/Result/search?organization=MRC&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult", {
+                  download: true,
+                  //header: true,
+                  complete: function (results) {
+                        console.log("Parsing complete.", results.data);
+                        $.each(results.data, function (i, el) {
+                              var row = $("<tr/>");
+                              row.append($("<td/>").text(i));
+                              $.each(el, function (i, cell) {
+                                    row.append($("<td/>").text(cell));
+                              });
+                              $("#results tbody").append(row);
+                        };
+                               };
+                               });
+                  });
 
 
 
 </script>
-
-
-
-
-
-
-
 </head>
-
-
-
 <body>
-
-
-
 <H1> Midlands River </H1>
-
 </br>
-
 This table is displaying data from a demo CSV file which can be found <a href="https://www.waterqualitydata.us/data/Result/search?organization=MRC&amp;characteristicName=Escherichia%20coli&amp;mimeType=csv&amp;zip=no&amp;dataProfile=narrowResult" target="_blank">here</a>.
-
-</br>  
-
-  <table id="results">
-
-
-
-  </table>
-
-
-
-  </br>
-
-
-
-
-
+</br>
+<table id="results">
+</table>
+</br>
 </body>
-
-
-
 </html>
