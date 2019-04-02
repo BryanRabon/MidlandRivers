@@ -1,9 +1,10 @@
 <html>
       <head>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.6.3/papaparse.min.js"></script>
+            //<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            //<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.6.3/papaparse.min.js"></script>
             <script src="https://gmousse.github.io/dataframe-js/dist/dataframe.min.js"></script>
             <script>
+                  var DataFrame = dfjs.DataFrame;
                   DataFrame.fromCSV('https://www.waterqualitydata.us/data/Result/search?organization=MRC&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult').then(df => df);
                   console.log("Parsing complete.", df);
             </script>
