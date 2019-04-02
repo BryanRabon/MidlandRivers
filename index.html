@@ -13,7 +13,7 @@
                         //df.show(3);
                         const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','ActivityStartTime/Time','CharacteristicName','ResultMeasureValue','ResultMeasure/MeasureUnitCode');
                         shortDF.show(3);
-                        var dfshort = shortDF.toArray();
+                        window.dfshort = shortDF.toArray();
                   });
                   //console.log(short);
                   
