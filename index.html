@@ -11,7 +11,7 @@
                         .then(df => {
                         console.log(df.listColumns());
                         df.show();
-                  }
+                  });
                   //console.log(DataFrame);
                   const df = new DataFrame.fromCSV('https://www.waterqualitydata.us/data/Result/search?organization=MRC&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult');
                   console.log(df.count());
