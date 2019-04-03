@@ -3,6 +3,15 @@
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.6.3/papaparse.min.js"></script>
             <script src="https://gmousse.github.io/dataframe-js/dist/dataframe.min.js"></script>
+            
+                  
+            </script>
+      </head>
+      <body>
+            <H1> Midlands River </H1>
+            </br>
+This table is displaying data from a demo CSV file which can be found <a href="https://www.waterqualitydata.us/data/Result/search?organization=MRC&amp;characteristicName=Escherichia%20coli&amp;mimeType=csv&amp;zip=no&amp;dataProfile=narrowResult" target="_blank">here</a>.
+            </br>
             <script>
                   var passaround = {};
                   const DataFrame = dfjs.DataFrame;
@@ -15,18 +24,8 @@
                         const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','ActivityStartTime/Time','CharacteristicName','ResultMeasureValue','ResultMeasure/MeasureUnitCode');
                         shortDF.show(3);
                         passaround.dfshort = shortDF.toArray();
+                        console.log("once",passaround.dfshort);
                   });
-                  console.log("once",passaround.dfshort);
                   
-            </script>
-      </head>
-      <body>
-            <H1> Midlands River </H1>
-            <br></br>
-            This table is displaying data from a demo CSV file which can be found <a href="https://www.waterqualitydata.us/data/Result/search?organization=MRC&amp;characteristicName=Escherichia%20coli&amp;mimeType=csv&amp;zip=no&amp;dataProfile=narrowResult" target="_blank">here</a>.
-            <br></br>
-            <script>
-                  console.log(passaround.dfshort);
-            </script>
       </body>
 </html>
