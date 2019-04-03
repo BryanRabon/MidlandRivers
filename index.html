@@ -26,9 +26,10 @@ This table is displaying data from a demo CSV file which can be found <a href="h
                   passaround.dfshort = Papa.parse("https://www.waterqualitydata.us/data/Result/search?organization=21SC60WQ_WQX&siteid=21SC60WQ_WQX-S-298&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult",
                              {
                                     download: true,
-                                    //header: true
-                  });
-                  console.log("once",dfshort);
+                                    header: true,
+                        complete: function (results) {
+                              console.log("Parsing complete.", results.data);
+                        }});
              </script>                 
       </body>
 </html>
