@@ -31,6 +31,7 @@ This table is displaying data from a demo CSV file which can be found <a href="h
                                     header: true,
                         complete: function (results) {
                               console.log("Parsing complete.", results.data);
+                              return results.data;
                         }});
                   console.log(dfshort)
              </script>                 
