@@ -11,7 +11,7 @@ This table is displaying data from a demo CSV file which can be found <a href="h
             </br>
             <script>
                   var passaround = {};
-                  const DataFrame = dfjs.DataFrame;
+                  /*const DataFrame = dfjs.DataFrame;
                   DataFrame.fromCSV(
                         "https://www.waterqualitydata.us/data/Result/search?organization=MRC&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult"
                   )
@@ -22,7 +22,13 @@ This table is displaying data from a demo CSV file which can be found <a href="h
                         shortDF.show(3);
                         passaround.dfshort = shortDF.toArray();
                         console.log("once",passaround.dfshort);
+                  });*/
+                  passaround.dfshort = Papa.parse("https://www.waterqualitydata.us/data/Result/search?organization=21SC60WQ_WQX&siteid=21SC60WQ_WQX-S-298&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult",
+                             {
+                                    download: true,
+                                    //header: true
                   });
+                  console.log("once",passaround.dfshort);
              </script>                 
       </body>
 </html>
