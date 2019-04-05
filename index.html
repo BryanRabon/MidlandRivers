@@ -24,7 +24,7 @@ This table is displaying data from a demo CSV file which can be found <a href="h
                         passaround.dfshort = shortDF.toArray();
                         console.log("once",dfshort);
                   });*/
-                  var dfshort
+                  /*var dfshort
                   dfshort = Papa.parse("https://www.waterqualitydata.us/data/Result/search?organization=21SC60WQ_WQX&siteid=21SC60WQ_WQX-S-298&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult",
                              {
                                     download: true,
@@ -33,7 +33,23 @@ This table is displaying data from a demo CSV file which can be found <a href="h
                               console.log("Parsing complete.", results.data);
                               return results.data;
                         }});
-                  console.log(dfshort)
+                  console.log(dfshort)*/
+                  function doStuff(data) {
+    //Data is usable here
+    console.log(data);
+}
+
+function parseData(url, callBack) {
+    Papa.parse(url, {
+        download: true,
+        dynamicTyping: true,
+        complete: function(results) {
+            callBack(results.data);
+        }
+    });
+}
+
+parseData("https://www.waterqualitydata.us/data/Result/search?organization=MRC&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult", doStuff);
              </script>                 
       </body>
 </html>
