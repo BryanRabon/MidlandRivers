@@ -35,21 +35,22 @@ This table is displaying data from a demo CSV file which can be found <a href="h
                         }});
                   console.log(dfshort)*/
                   function doStuff(data) {
-    //Data is usable here
-    console.log(data);
-}
-
-function parseData(url, callBack) {
-    Papa.parse(url, {
-        download: true,
-        dynamicTyping: true,
-        complete: function(results) {
-            callBack(results.data);
-        }
-    });
-}
-
-parseData("https://www.waterqualitydata.us/data/Result/search?organization=MRC&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult", doStuff);
+                        //Data is usable here
+                        return data
+                        console.log(data);
+                  }
+                  function parseData(url, callBack) {
+                        Papa.parse(url, {
+                              download: true,
+                              header: true,
+                              dynamicTyping: true,
+                              complete: function(results) {
+                                    callBack(results.data)
+                              }
+                        });
+                  }
+                  var dout = parseData("https://www.waterqualitydata.us/data/Result/search?organization=MRC&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult", doStuff);
+                  console.log(dout);
              </script>                 
       </body>
 </html>
