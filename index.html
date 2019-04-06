@@ -1,5 +1,30 @@
 <!DOCTYPE html>
       <head>
+      <style>
+      .dataTable {
+font-size:9pt;
+font-family:Arial;
+}
+.dataTable th,.dataTable td {padding:5px;}
+.dataTable th {
+  background-color:navy;
+  color:white;
+  text-transform:capitalize;
+  }
+.dataTable tbody tr:nth-child(2n) {background-color:lightBlue;}
+
+.dataTable tbody tr td:nth-child(1) {
+  background:linear-gradient(to right,navy,blue);
+  color:white;
+}
+.dataTable caption {
+  font-size:10pt;
+  font-weight:bold;
+  caption-side:left;
+  border:solid 2px navy;
+  padding:5px;
+}
+      </style>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.6.3/papaparse.min.js"></script>
             <script src="https://gmousse.github.io/dataframe-js/dist/dataframe.min.js"></script>   
@@ -9,9 +34,24 @@
             </br>
 This table is displaying data from a demo CSV file which can be found <a href="https://www.waterqualitydata.us/data/Result/search?organization=MRC&amp;characteristicName=Escherichia%20coli&amp;mimeType=csv&amp;zip=no&amp;dataProfile=narrowResult" target="_blank">here</a>.
             </br>
+            <pre id = "group"></>
             <script>
-                  /*var passaround = {};
+            var display = (text,elementSelector)=>document.querySelector(elementSelector).textContent = text;
                   const DataFrame = dfjs.DataFrame;
+                  DataFrame.prototype.showHtml = function(targetPath,caption){
+  var columns = this.listColumns();
+  var table = `<table class="dataTable">
+<caption>${caption}</caption>
+<thead>
+<tr>${columns.map((column)=>`<th>${column}</th>`).join('')}</tr>
+</thead>
+<tbody>
+${this.toArray().map((row)=>`<tr>${columns.map((column,index)=>`<td>${row[index]}</td>`).join("")}</tr>`).join("")} 
+</tbody>
+</table>`;
+document.querySelector(targetPath).innerHTML = table; 
+  return this; 
+};
                   DataFrame.fromCSV(
                         "https://www.waterqualitydata.us/data/Result/search?organization=MRC&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult"
                   )
@@ -19,11 +59,15 @@ This table is displaying data from a demo CSV file which can be found <a href="h
                         //console.log(df.listColumns());
                         //df.show(3);
                         const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','ActivityStartTime/Time','CharacteristicName','ResultMeasureValue','ResultMeasure/MeasureUnitCode');
-                        shortDF.show(3);
-                        const dfshort = shortDF.groupBy('MonitoringLocationIdentifier').toArray();
-                        passaround.dfshort = shortDF.toArray();
-                        console.log("once",dfshort);
-                  });*/
+                        
+                      shortDF.showHtml("#group","Group by");
+                      shortDF.show(3);
+                        
+                        const dfshort = shortDF.groupBy('MonitoringLocationIdentifier');
+                        dfshort.show(3);
+                        
+                        dfshort.show(3);
+                  });
                   /*var dfshort
                   dfshort = Papa.parse("https://www.waterqualitydata.us/data/Result/search?organization=21SC60WQ_WQX&siteid=21SC60WQ_WQX-S-298&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult",
                              {
@@ -34,7 +78,7 @@ This table is displaying data from a demo CSV file which can be found <a href="h
                               return results.data;
                         }});
                   console.log(dfshort)*/
-                  function doStuff(data) {
+                  /*function doStuff(data) {
                         //Data is usable here
                         console.log("in Function")
                         console.log(data);
@@ -51,7 +95,7 @@ This table is displaying data from a demo CSV file which can be found <a href="h
                         });
                   }
                   var dout = parseData("https://www.waterqualitydata.us/data/Result/search?organization=MRC&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult", doStuff);
-                  console.log(dout);
+                  console.log(dout);*/
              </script>                 
       </body>
 </html>
