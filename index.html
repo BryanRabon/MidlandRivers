@@ -52,50 +52,24 @@ ${this.toArray().map((row)=>`<tr>${columns.map((column,index)=>`<td>${row[index]
 document.querySelector(targetPath).innerHTML = table; 
   return this; 
 };
-                  DataFrame.fromCSV(
-                        "https://www.waterqualitydata.us/data/Result/search?organization=MRC&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult"
-                  )
-                        .then(df => {
-                        //console.log(df.listColumns());
-                        //df.show(3);
-                        const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','ActivityStartTime/Time','CharacteristicName','ResultMeasureValue','ResultMeasure/MeasureUnitCode');
+DataFrame.fromCSV(
+"https://www.waterqualitydata.us/data/Result/search?organization=MRC&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult"
+                  ).then(df => {
+//console.log(df.listColumns());
+//df.show(3);
+const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','ActivityStartTime/Time','CharacteristicName','ResultMeasureValue','ResultMeasure/MeasureUnitCode').renameAll(['Stat','Date','Time','Parm','Result','Unit']).cast('Result', Number).map(row => row.set('Year', row.get('Date').split("-",1))).restructure(['Year','Stat','Date','Time','Parm','Result','Unit']).sortBy(['Year','Stat','Date']);
                         
-                      shortDF.showHtml("#group","Group by");
                       shortDF.show(3);
+                      //shortDF.showHtml("#group","Group by");
                         
-                        const dfshort = shortDF.groupBy('MonitoringLocationIdentifier');
-                        dfshort.show(3);
-                        
-                        dfshort.show(3);
+                     const numDF = shortDF.groupBy('Year','Stat').aggregate(group => group.count());
+                     numDF.showHtml("#group","Count")
+                     
+                     
+                     //dfshort.show(3);
+                     
+                     
                   });
-                  /*var dfshort
-                  dfshort = Papa.parse("https://www.waterqualitydata.us/data/Result/search?organization=21SC60WQ_WQX&siteid=21SC60WQ_WQX-S-298&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult",
-                             {
-                                    download: true,
-                                    header: true,
-                        complete: function (results) {
-                              console.log("Parsing complete.", results.data);
-                              return results.data;
-                        }});
-                  console.log(dfshort)*/
-                  /*function doStuff(data) {
-                        //Data is usable here
-                        console.log("in Function")
-                        console.log(data);
-                        return data;
-                  }
-                  function parseData(url, callBack) {
-                        Papa.parse(url, {
-                              download: true,
-                              header: true,
-                              dynamicTyping: true,
-                              complete: function(results) {
-                                    callBack(results.data)
-                              }
-                        });
-                  }
-                  var dout = parseData("https://www.waterqualitydata.us/data/Result/search?organization=MRC&characteristicName=Escherichia%20coli&mimeType=csv&zip=no&dataProfile=narrowResult", doStuff);
-                  console.log(dout);*/
              </script>                 
       </body>
 </html>
