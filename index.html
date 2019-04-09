@@ -68,7 +68,7 @@ const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','Ac
                      
                      const dataDf = shortDF.groupBy('Year').aggregate(gdf => gdf.toArray("Result")).rename("aggregation","results");
                      dataDf.show(3);
-                     const chartDF = dataDf.map(row => row.set('chart', '<script>$("#sparkline").sparkline(['+row.get('results')+ '], {type: "box",raw: true});<script/>')).select("Year","charts");
+                     const chartDF = dataDf.map(row => row.set('chart', '<script>$("#sparkline").sparkline(['+row.get('results')+ '], {type: "box",raw: true});<script/>')).select("Year","chart");
                      const outDF = numDF.innerJoin[chartDF,'Year'];
                      outDF.showHtml("#group","Count");
                            //console.log(dataDf);
