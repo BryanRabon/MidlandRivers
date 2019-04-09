@@ -67,7 +67,7 @@ const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','Ac
                      numDF.showHtml("#group","Count");
                      
                      const dataDf = shortDF.groupBy('Year').aggregate(gdf => gdf.toArray("Result"));
-                     shortDF.showHtml("#group2","Count2")
+                     dataDf.showHtml("#group2","Count2");
                      //console.log(dataDf);
                      
                      
