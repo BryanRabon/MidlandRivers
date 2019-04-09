@@ -35,7 +35,7 @@ font-family:Arial;
 This table is displaying data from a demo CSV file which can be found <a href="https://www.waterqualitydata.us/data/Result/search?organization=MRC&amp;characteristicName=Escherichia%20coli&amp;mimeType=csv&amp;zip=no&amp;dataProfile=narrowResult" target="_blank">here</a>.
             <br>
             <pre id = "group"></>
-            <pre id = "group2"></>
+            <pre id = "gg"></>
             <script>
             var display = (text,elementSelector)=>document.querySelector(elementSelector).textContent = text;
                   const DataFrame = dfjs.DataFrame;
@@ -67,7 +67,7 @@ const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','Ac
                      numDF.showHtml("#group","Count");
                      
                      const dataDf = shortDF.groupBy('Year').aggregate(gdf => gdf.toArray("Result"));
-                     dataDf.showHtml("#group2","Count2");
+                     dataDf.showHtml("#gg","Countg");
                      //console.log(dataDf);
                      
                      
