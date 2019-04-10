@@ -65,16 +65,16 @@ DataFrame.fromCSV(
 const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','ActivityStartTime/Time','CharacteristicName','ResultMeasureValue','ResultMeasure/MeasureUnitCode').renameAll(['Stat','Date','Time','Parm','Result','Unit']).cast('Result', Number).map(row => row.set('Year', row.get('Date').split("-",1))).restructure(['Year','Stat','Date','Time','Parm','Result','Unit']).sortBy(['Year','Stat','Date']);
                         
                       shortDF.show(3);
-                      //shortDF.showHtml("#group","Group by");
+                      shortDF.showHtml("#gg","Group by");
                         
                      const numDF = shortDF.groupBy('Year').aggregate(group => group.count()).rename("aggregation","samples");
                      numDF.showHtml("#group","Count");
                      
                      const dataDF = shortDF.groupBy('Year').aggregate(gdf => gdf.toArray("Result")).rename("aggregation","results");
-            console.log("before Data Show")          
-            dataDF.show();
-                     shortDF.showHtml("#gg","Data3");
-                     console.log("Done") 
+            console.log(dataDF);          
+            //dataDF.show();
+                     //shortDF.showHtml("#gg","Data3");
+                     console.log("Done"); 
                      
                      //const chartDF = dataDf.map(row => row.set('chart','<span class="inlinebar">' + 1,3,4,5,3,5 + '</span>').select("Year","chart");
                      //chartDF.show();
