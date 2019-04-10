@@ -64,11 +64,10 @@ DataFrame.fromCSV(
 //df.show(3);
 const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','ActivityStartTime/Time','CharacteristicName','ResultMeasureValue','ResultMeasure/MeasureUnitCode').renameAll(['Stat','Date','Time','Parm','Result','Unit']).cast('Result', Number).map(row => row.set('Year', row.get('Date').split("-",1))).restructure(['Year','Stat','Date','Time','Parm','Result','Unit']).sortBy(['Year','Stat','Date']);
                         
-                      shortDF.show(3);
-                      shortDF.showHtml("#gg","Group by");
-                        
                      const numDF = shortDF.groupBy('Year').aggregate(group => group.count()).rename("aggregation","samples");
                      numDF.showHtml("#group","Count");
+                        console.log(shortDF);
+                      shortDF.showHtml("#gg","Group by");
                      
                      const dataDF = shortDF.groupBy('Year').aggregate(gdf => gdf.toArray("Result")).rename("aggregation","results");
             console.log(dataDF);          
