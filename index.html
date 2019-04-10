@@ -1,6 +1,10 @@
 <!DOCTYPE html>
       <head>
       <style>
+      <script>
+      $('.inlinebar').sparkline('html', {type: 'box',
+    raw: true});
+    </script> 
       .dataTable {
 font-size:9pt;
 font-family:Arial;
@@ -35,9 +39,12 @@ font-family:Arial;
 This table is displaying data from a demo CSV file which can be found <a href="https://www.waterqualitydata.us/data/Result/search?organization=MRC&amp;characteristicName=Escherichia%20coli&amp;mimeType=csv&amp;zip=no&amp;dataProfile=narrowResult" target="_blank">here</a>.
             <br>
             <pre id = "group"></>
+            <br> 
+            
             <pre id = "gg"></>
             <script>
             var display = (text,elementSelector)=>document.querySelector(elementSelector).textContent = text;
+            
                   const DataFrame = dfjs.DataFrame;
                   DataFrame.prototype.showHtml = function(targetPath,caption){
   var columns = this.listColumns();
@@ -66,14 +73,14 @@ const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','Ac
                      const numDF = shortDF.groupBy('Year').aggregate(group => group.count()).rename("aggregation","samples");
                      numDF.showHtml("#group","Count");
                      
-                     const dataDf = shortDF.groupBy('Year').aggregate(gdf => gdf.toArray("Result")).rename("aggregation","results");
-                     dataDf.show(3);
-                     const chartDF = dataDf.map(row => row.set('chart', '<script>$("#sparkline").sparkline(['+row.get('results')+ '], {type: "box",raw: true});<script/>')).select("Year","chart");
-                     const outDF = numDF.innerJoin[chartDF,'Year'];
-                     outDF.show();
-                     console.log(outDF);
-                     outDF.showHtml("#gg","Count");
-                           //console.log(dataDf);
+                     const dataDF = shortDF.groupBy('Year').aggregate(gdf => gdf.toArray("Result")).rename("aggregation","results");
+                     dataDF.show();
+                     shortDF.showHtml("#gg","Data3");
+                     console.log("Done") 
+                     
+                     //const chartDF = dataDf.map(row => row.set('chart','<span class="inlinebar">' + 1,3,4,5,3,5 + '</span>').select("Year","chart");
+                     //chartDF.show();
+                     //const outDF = numDF.innerJoin[chartDF,'Year'];
                      
                      
                   });
