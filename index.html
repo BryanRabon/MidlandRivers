@@ -1,10 +1,6 @@
 <!DOCTYPE html>
       <head>
       <style>
-      <script>
-      $('.inlinebar').sparkline('html', {type: 'box',
-    raw: true});
-    </script> 
       .dataTable {
 font-size:9pt;
 font-family:Arial;
@@ -43,6 +39,7 @@ This table is displaying data from a demo CSV file which can be found <a href="h
             
             <pre id = "gg"></>
             <script>
+             $('.inlinebar').sparkline('html', {type: 'box', raw: true});
             var display = (text,elementSelector)=>document.querySelector(elementSelector).textContent = text;
             
                   const DataFrame = dfjs.DataFrame;
