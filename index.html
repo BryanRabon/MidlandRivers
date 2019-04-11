@@ -69,7 +69,14 @@ const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','Ac
                      numDF.showHtml("#group","Count");
                      //console.log(shortDF);
                      //shortDF.showHtml("#gg","Group by");
-                     
+      
+                     const aveDF = shortDF.groupBy('Year').aggregate(group => group.mean()).rename("aggregation","average");
+                     const nxDF = shortDF.filter(row => row.get('Result') >= 349)
+.groupBy('Year').aggregate(group => group.count()).rename("aggregation","N_samples_exceed_standard");
+                     const axDF = shortDF.filter(row => row.get('Result') >= 349)
+.groupBy('Year').aggregate(group => group.mean()).rename("aggregation","Average_samples_exceed_standard");
+
+  
                      const dataDF = shortDF.groupBy('Year').aggregate(gdf => gdf.toArray("Result")).rename("aggregation","results");
                      console.log(dataDF);          
                      dataDF.showHtml("#gg","Data3");
@@ -77,6 +84,8 @@ const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','Ac
                      console.log("Done"); 
                      
                      const chartDF = dataDF.map(row => row.set('chart',["<span class='inlinebar'>",row.get('results').join(),"</span>"].join()));
+                     
+                     const outDF = numdF.join(aveDF,'Year','left').join(nxDF,'Year','left').join(axDF,'Year','left').join(chartDF,'Year','left')
                      chartDF.showHtml("#ggcharts","Charts");
                      //chartDF.show();
                      //const outDF = numDF.innerJoin[chartDF,'Year'];
