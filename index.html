@@ -76,7 +76,7 @@ const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','Ac
                      //shortDF.showHtml("#gg","Data3");
                      console.log("Done"); 
                      
-                     const chartDF = dataDF.map(row => row.set('chart',["<span class='inlinebar'>",row.get('results').toArray().join(),"</span>"].join()));
+                     const chartDF = dataDF.map(row => row.set('chart',["<span class='inlinebar'>",row.get('results').join(),"</span>"].join()));
                      chartDF.showHtml("#ggcharts","Charts");
                      //chartDF.show();
                      //const outDF = numDF.innerJoin[chartDF,'Year'];
