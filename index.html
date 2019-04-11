@@ -70,11 +70,11 @@ const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','Ac
                      //console.log(shortDF);
                      //shortDF.showHtml("#gg","Group by");
       
-                     const aveDF = shortDF.groupBy('Year').aggregate(group => group.mean()).rename("aggregation","average");
+                     const aveDF = shortDF.groupBy('Year').aggregate(group => group.stat.mean('Result')).rename("aggregation","average");
                      const nxDF = shortDF.filter(row => row.get('Result') >= 349)
 .groupBy('Year').aggregate(group => group.count()).rename("aggregation","N_samples_exceed_standard");
                      const axDF = shortDF.filter(row => row.get('Result') >= 349)
-.groupBy('Year').aggregate(group => group.mean()).rename("aggregation","Average_samples_exceed_standard");
+.groupBy('Year').aggregate(group => group.stat.mean('Result')).rename("aggregation","Average_samples_exceed_standard");
 
   
                      const dataDF = shortDF.groupBy('Year').aggregate(gdf => gdf.toArray("Result")).rename("aggregation","results");
