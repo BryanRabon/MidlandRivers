@@ -66,7 +66,7 @@ DataFrame.fromCSV(
 const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','ActivityStartTime/Time','CharacteristicName','ResultMeasureValue','ResultMeasure/MeasureUnitCode').renameAll(['Stat','Date','Time','Parm','Result','Unit']).cast('Result', Number).map(row => row.set('Year', row.get('Date').split("-",1))).restructure(['Year','Stat','Date','Time','Parm','Result','Unit']).sortBy(['Year','Stat','Date']);
                         
                      const numDF = shortDF.groupBy('Year').aggregate(group => group.count()).rename("aggregation","samples");
-                     numDF.showHtml("#group","Count");
+                     //numDF.showHtml("#group","Count");
                      //console.log(shortDF);
                      //shortDF.showHtml("#gg","Group by");
       
@@ -79,14 +79,14 @@ const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','Ac
   
                      const dataDF = shortDF.groupBy('Year').aggregate(gdf => gdf.toArray("Result")).rename("aggregation","results");
                      console.log(dataDF);          
-                     dataDF.showHtml("#gg","Data3");
+                     //dataDF.showHtml("#gg","Data3");
                      //shortDF.showHtml("#gg","Data3");
                      console.log("Done"); 
                      
-                     const chartDF = dataDF.map(row => row.set('chart',["<span class='inlinebar'>",row.get('results').join(),"</span>"].join()));
+                     const chartDF = dataDF.map(row => row.set('chart',["<span class='inlinebar'>",row.get('results').join(),"</span>"].join())).select('Year','chart');
                      
                      const outDF = numDF.join(aveDF,'Year','left').join(nxDF,'Year','left').join(axDF,'Year','left').join(chartDF,'Year','left')
-                     chartDF.showHtml("#ggcharts","Charts");
+                     outDF.showHtml("#ggcharts","Charts");
                      //chartDF.show();
                      //const outDF = numDF.innerJoin[chartDF,'Year'];
                      
