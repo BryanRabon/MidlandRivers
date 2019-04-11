@@ -85,7 +85,7 @@ const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','Ac
                      
                      const chartDF = dataDF.map(row => row.set('chart',["<span class='inlinebar'>",row.get('results').join(),"</span>"].join()));
                      
-                     const outDF = numdF.join(aveDF,'Year','left').join(nxDF,'Year','left').join(axDF,'Year','left').join(chartDF,'Year','left')
+                     const outDF = numDF.join(aveDF,'Year','left').join(nxDF,'Year','left').join(axDF,'Year','left').join(chartDF,'Year','left')
                      chartDF.showHtml("#ggcharts","Charts");
                      //chartDF.show();
                      //const outDF = numDF.innerJoin[chartDF,'Year'];
