@@ -95,7 +95,7 @@ const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','Ac
       
                      const aveYSDF = shortDF.groupBy('Year','Stat').aggregate(group => group.stat.mean('Result')).rename("aggregation","average");
                      const nxYSDF = shortDF.filter(row => row.get('Result') >= 349)
-.groupBy('Year'.'Stat').aggregate(group => group.count()).rename("aggregation","N_samples_exceed_standard");
+.groupBy('Year','Stat').aggregate(group => group.count()).rename("aggregation","N_samples_exceed_standard");
                      const axYSDF = shortDF.filter(row => row.get('Result') >= 349)
 .groupBy('Year','Stat').aggregate(group => group.stat.mean('Result')).rename("aggregation","Average_samples_exceed_standard");
 
