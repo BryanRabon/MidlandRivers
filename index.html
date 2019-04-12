@@ -109,7 +109,7 @@ const shortDF = df.select('MonitoringLocationIdentifier','ActivityStartDate','Ac
                      const chartYSDF = dataYSDF.map(row => row.set('chart',["<span class='inlineline'>",row.get('results').join(),"</span>"].join())).select('Year','Stat','chart');
                      
                      const outYSDF = numYSDF.join(aveYSDF,['Year','Stat'],'left').join(nxYSDF,['Year','Stat'],'left').join(axYSDF,['Year','Stat'],'left').join(chartYSDF,['Year','Stat'],'left')
-                     outDF.showHtml("#ggchartsline","Year Station Results");
+                     outYSDF.showHtml("#ggchartsline","Year Station Results");
                      
                      $('.inlinebar').sparkline('html', {type: 'box', raw: true});
                      $('.inlineline').sparkline('html', {type: 'line'});
